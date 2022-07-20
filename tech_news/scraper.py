@@ -3,6 +3,7 @@ import time
 from parsel import Selector
 # https://stackoverflow.com/questions/4289331/how-to-extract-numbers-from-a-string-in-python
 import re
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -80,4 +81,21 @@ def scrape_noticia(html_content):
 
 # Requisito 5
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+    url = 'https://blog.betrybe.com'
+    next_url = '/'
+    notices = []
+
+    content = fetch(url)
+    if content is not None:
+        while next_url:
+            url_news = scrape_novidades(content)
+            for url_new in url_news:
+                content_new = fetch(url_new)
+                notices.append(scrape_noticia(content_new))
+                if len(notices) >= amount:
+                    create_news(notices)
+                    return notices
+            next_url = scrape_next_page_link(content)
+            content = fetch(next_url)
+    create_news(notices)
+    return notices

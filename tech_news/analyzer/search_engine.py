@@ -1,6 +1,20 @@
+from tech_news.database import search_news
+
+
 # Requisito 6
 def search_by_title(title):
-    """Seu código deve vir aqui"""
+    result = list()
+    search = search_news({
+        'title': {
+            # https://stackoverflow.com/questions/319426/how-do-i-do-a-case-insensitive-string-comparison
+            '$regex': f'{title.casefold()}',
+        }
+    })
+
+    for item in search:
+        result.append((item['title'], item['url']))
+
+    return result
 
 
 # Requisito 7

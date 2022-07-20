@@ -1,6 +1,8 @@
 import requests
 import time
 from parsel import Selector
+# https://stackoverflow.com/questions/4289331/how-to-extract-numbers-from-a-string-in-python
+import re
 
 
 # Requisito 1
@@ -45,7 +47,35 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_noticia(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(html_content)
+
+    comments_count = selector.css(
+        'div.post-comments h5.title-block ::text'
+    ).get()
+    if comments_count is None:
+        comments_count = 0
+    else:
+        comments_count = int(re.search(r'\d+', comments_count).group())
+
+    result = {
+        'url': selector.css('link[rel="canonical"]::attr(href)').get(),
+        'title': (selector.css(
+            'div.entry-header-inner h1.entry-title ::text'
+        ).get()).strip(),
+        'timestamp': selector.css('ul.post-meta > li.meta-date ::text').get(),
+        'writer': selector.css('span.author a.url ::text').get(),
+        'comments_count': comments_count,
+        'summary': "".join(selector.css(
+            'div.entry-content > p:nth-of-type(1) *::text'
+        ).getall()).strip(),
+        'tags': selector.css(
+            'section.post-tags ul li:not(:first-child) ::text'
+        ).getall(),
+        'category': selector.css(
+            'div.meta-category a.category-style span.label ::text'
+        ).get(),
+    }
+    return result
 
 
 # Requisito 5

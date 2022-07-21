@@ -38,7 +38,18 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    result = list()
+    search = search_news({
+        'tags':  {
+            '$in': [
+                # https://www.programiz.com/python-programming/methods/string/capitalize#:~:text=The%20capitalize()%20method%20converts,all%20other%20alphabets%20to%20lowercase.
+                f'{tag.casefold().capitalize()}'
+            ]
+        }
+    })
+    for item in search:
+        result.append((item['title'], item['url']))
+    return result
 
 
 # Requisito 9

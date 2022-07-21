@@ -1,4 +1,5 @@
 from tech_news.database import search_news
+from datetime import datetime
 
 
 # Requisito 6
@@ -19,7 +20,20 @@ def search_by_title(title):
 
 # Requisito 7
 def search_by_date(date):
-    """Seu código deve vir aqui"""
+    try:
+        result = list()
+        search_date = datetime.strptime(date, '%Y-%m-%d')
+        if type(search_date) is not datetime:
+            raise ValueError
+        search = search_news({
+            # https://www.geeksforgeeks.org/python-reversed-split-strings/
+            "timestamp":  "/".join(reversed(date.split('-'))),
+        })
+        for item in search:
+            result.append((item['title'], item['url']))
+        return result
+    except ValueError:
+        raise ValueError('Data inválida')
 
 
 # Requisito 8

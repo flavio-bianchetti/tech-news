@@ -25,7 +25,7 @@ jobs:
           file: .src/Dockerfile
           push: true
           tags: |
-            fjb/tech-news: v1
-            fjb/tech-news: latest
+            flavio-bianchetti/tech-news: v1
+            flavio-bianchetti/tech-news: latest
             
       

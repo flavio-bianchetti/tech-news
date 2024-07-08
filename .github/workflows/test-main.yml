@@ -21,8 +21,8 @@ jobs:
       - name: Construção de imagem Docker
         uses: docker/build-push-action@v6.3.0
         with:
-          context: ./src
-          file: .src/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
           tags: |
             flaviobianchetti2/tech-news: v1

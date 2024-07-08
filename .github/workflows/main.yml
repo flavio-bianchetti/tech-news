@@ -2,7 +2,8 @@ name: CI-CD
 
 on:
   push:
-    branches: ["main"]
+    branches: 
+      -main
 
 jobs:
   CI:
@@ -10,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4.1.7
-      - name: construção da imagem Docker
+      - name: Construção de imagem Docker
         uses: docker/build-push-action@v6.3.0
         with:
           context: ./src

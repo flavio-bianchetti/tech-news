@@ -32,9 +32,17 @@ jobs:
       - name: Send GitHub Action Messages to Slack Workflow
         id: slack
         # uses: slackapi/slack-github-action@v1.26.0
-        uses: rtCamp/action-slack-notify@v2
+        # uses: rtCamp/action-slack-notify@v2
         # uses: act10ns/slack@v2.1.0
+        uses: alonsohki/slack-webhook-payload@v1
         # env:
+        #   SLACK_WEBHOOK: ${{ secrets.SLACK_ROBOTICS_CI_WEBHOOK }}
+        # run: |
+        #   if [[ -z "$SLACK_WEBHOOK" ]]; then
+        #     echo "slack_webhook_exists=false" >> $GITHUB_ENV
+        #   else
+        #     echo "slack_webhook_exists=true" >> $GITHUB_ENV
+        #   fi
           # Inserir a chave do slack em secrets ou pegar o nome certo
           # xoxe.xoxp-1-Mi0yLTI3NDcxOTMzNDY4ODEtNDEwMDAwMDU5MjU5NC03Mzg5OTY2NDg3NjIyLTczOTkwNzg3NjAyOTItZmQzYjJkNmM5YTgyYWUxMTFiMmJlODI0ZDIzOWU1YTc2ZWZkMDdhMDcyYWVlNzBiMmE4ODQwN2MzMzk4MDZjNQ
           # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -45,14 +53,16 @@ jobs:
           # CHANNEL_ID: teste-de-cicd
           # USERNAME: GitHub-CI
         with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          content: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           # channel-id: ${{ env.CHANNEL_ID }}
           # SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
-          SLACK_CHANNEL: teste-de-cicd
-          SLACK_TITLE: Post Title
-          SLACK_USERNAME: flavio-bianchetti
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          # SLACK_CHANNEL: teste-de-cicd
+          # SLACK_TITLE: Post Title
+          # SLACK_USERNAME: flavio-bianchetti
+          # SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           # SLACK_MESSAGE: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-          SLACK_MESSAGE: ":rocket: TECH-NEWS"
+          # SLACK_MESSAGE: ":rocket: TECH-NEWS"
           # slack-optional-icon_emoji: ${{ env.ICON_URL }}
           # slack-message: "release: 🚀 PDM-IAM-SERVICE ${{  }}"
           # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`

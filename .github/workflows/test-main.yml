@@ -27,7 +27,7 @@ jobs:
           tags: |
             flaviobianchetti2/tech-news:v1
             flaviobianchetti2/tech-news:latest
-
+  
       # TODO: Notify on Slack when new version is released :rocket:
       - name: Send GitHub Action Messages to Slack Workflow
         id: slack
@@ -49,7 +49,7 @@ jobs:
           # SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
           SLACK_CHANNEL: teste-de-cicd
           SLACK_TITLE: Post Title
-          SLACK_USERNAME: BotCI
+          SLACK_USERNAME: flavio-bianchetti
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           # SLACK_MESSAGE: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           SLACK_MESSAGE: ":rocket: TECH-NEWS"

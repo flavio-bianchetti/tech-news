@@ -38,7 +38,7 @@ jobs:
           # Inserir a chave do slack em secrets ou pegar o nome certo
           # xoxe.xoxp-1-Mi0yLTI3NDcxOTMzNDY4ODEtNDEwMDAwMDU5MjU5NC03Mzg5OTY2NDg3NjIyLTczOTkwNzg3NjAyOTItZmQzYjJkNmM5YTgyYWUxMTFiMmJlODI0ZDIzOWU1YTc2ZWZkMDdhMDcyYWVlNzBiMmE4ODQwN2MzMzk4MDZjNQ
           # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           ICON_URL: "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
           # canal github-actions - colocar no secret?
           # CHANNEL_ID: C07BNTR8E4S
@@ -46,10 +46,13 @@ jobs:
           # USERNAME: GitHub-CI
         with:
           # channel-id: ${{ env.CHANNEL_ID }}
-          SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
+          # SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
+          SLACK_CHANNEL: teste-de-cicd
           SLACK_TITLE: Post Title
           SLACK_USERNAME: BotCI
-          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # SLACK_MESSAGE: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          SLACK_MESSAGE: ":rocket: TECH-NEWS"
           # slack-optional-icon_emoji: ${{ env.ICON_URL }}
           # slack-message: "release: 🚀 PDM-IAM-SERVICE ${{  }}"
           # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`
@@ -61,7 +64,6 @@ jobs:
           # payload: |
           # slack-message: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           # slack-message: ":rocket: TECH-NEWS"
-          SLACK_MESSAGE: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           # slack-message: |
           #   {
           #     "blocks"[

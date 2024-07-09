@@ -32,6 +32,7 @@ jobs:
       - name: Send GitHub Action Messages to Slack Workflow
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
+        # uses: act10ns/slack@v2.1.0
         env:
           # Inserir a chave do slack em secrets ou pegar o nome certo
           # xoxe.xoxp-1-Mi0yLTI3NDcxOTMzNDY4ODEtNDEwMDAwMDU5MjU5NC03Mzg5OTY2NDg3NjIyLTczOTkwNzg3NjAyOTItZmQzYjJkNmM5YTgyYWUxMTFiMmJlODI0ZDIzOWU1YTc2ZWZkMDdhMDcyYWVlNzBiMmE4ODQwN2MzMzk4MDZjNQ
@@ -50,7 +51,8 @@ jobs:
 
           # slack-message: ":rocket: PDM-IAM-SERVICE - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
 
-          payload: |
+          # payload: |
+          slack-message: |
             {
               "blocks"[
                 { "type": "divider" },

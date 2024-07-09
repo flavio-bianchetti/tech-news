@@ -56,22 +56,7 @@ jobs:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}
           # content: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           content: |
-            {
-              "blocks"[
-                { "type": "divider" },
-                { "type": "image", "image_url": ${{ ICON_URL }} },
-              ]
-              "text": ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }}"
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                }
-              ]
-            }
+            { "text": "mensagem de teste" }
           # channel-id: ${{ env.CHANNEL_ID }}
           # SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
           # SLACK_CHANNEL: teste-de-cicd

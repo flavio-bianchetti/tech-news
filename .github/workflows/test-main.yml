@@ -25,5 +25,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            flaviobianchetti2/tech-news: v1
-            flaviobianchetti2/tech-news: latest
+            flaviobianchetti2/tech-news:v1
+            flaviobianchetti2/tech-news:latest

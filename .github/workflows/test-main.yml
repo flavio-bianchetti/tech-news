@@ -46,6 +46,7 @@ jobs:
         with:
           # channel-id: ${{ env.CHANNEL_ID }}
           SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           # slack-optional-icon_emoji: ${{ env.ICON_URL }}
           # slack-message: "release: 🚀 PDM-IAM-SERVICE ${{  }}"
           # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`

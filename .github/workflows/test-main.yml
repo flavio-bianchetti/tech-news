@@ -52,7 +52,8 @@ jobs:
           # slack-message: ":rocket: PDM-IAM-SERVICE - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
 
           # payload: |
-          slack-message: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          # slack-message: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          slack-message: ":rocket: TECH-NEWS"
           # slack-message: |
           #   {
           #     "blocks"[

@@ -27,3 +27,43 @@ jobs:
           tags: |
             flaviobianchetti2/tech-news:v1
             flaviobianchetti2/tech-news:latest
+
+      # TODO: Notify on Slack when new version is released :rocket:
+      - name: Send GitHub Action Messages to Slack Workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.26.0
+        env:
+          # Inserir a chave do slack em secrets ou pegar o nome certo
+          # xoxe.xoxp-1-Mi0yLTI3NDcxOTMzNDY4ODEtNDEwMDAwMDU5MjU5NC03Mzg5OTY2NDg3NjIyLTczOTkwNzg3NjAyOTItZmQzYjJkNmM5YTgyYWUxMTFiMmJlODI0ZDIzOWU1YTc2ZWZkMDdhMDcyYWVlNzBiMmE4ODQwN2MzMzk4MDZjNQ
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          ICON_URL: "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
+          # canal github-actions - colocar no secret?
+          CHANNEL_ID: C07BNTR8E4S
+          # USERNAME: GitHub-CI
+        with:
+          channel-id: ${{ env.CHANNEL_ID }}
+          # slack-optional-icon_emoji: ${{ env.ICON_URL }}
+          # slack-message: "release: 🚀 PDM-IAM-SERVICE ${{  }}"
+          # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`
+          # title: GitHub Actions
+          # title_link: https://support.github.com
+
+          # slack-message: ":rocket: PDM-IAM-SERVICE - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+
+          payload: |
+            {
+              "blocks"[
+                { "type": "divider" },
+                { "type": "image", "image_url": ${{ ICON_URL }} },
+              ]
+              "text": ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }}"
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  }
+                }
+              ]
+            }

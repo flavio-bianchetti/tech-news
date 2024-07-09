@@ -12,21 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7
       
-      - name: Autenticação no Docker Hub
-        uses: docker/login-action@v3.2.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_PWD }}
+      # - name: Autenticação no Docker Hub
+      #   uses: docker/login-action@v3.2.0
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USER }}
+      #     password: ${{ secrets.DOCKERHUB_PWD }}
 
-      - name: Construção de imagem Docker
-        uses: docker/build-push-action@v6.3.0
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: |
-            flaviobianchetti2/tech-news:v1
-            flaviobianchetti2/tech-news:latest
+      # - name: Construção de imagem Docker
+      #   uses: docker/build-push-action@v6.3.0
+      #   with:
+      #     context: ./
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: |
+      #       flaviobianchetti2/tech-news:v1
+      #       flaviobianchetti2/tech-news:latest
 
       # TODO: Notify on Slack when new version is released :rocket:
       - name: Send GitHub Action Messages to Slack Workflow
@@ -46,7 +46,9 @@ jobs:
         with:
           # channel-id: ${{ env.CHANNEL_ID }}
           SLACK_CHANNEL: ${{ env.CHANNEL_ID }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_TITLE: "Post Title"
+          SLACK_USERNAME: "BotCI"
+          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK_URL }}
           # slack-optional-icon_emoji: ${{ env.ICON_URL }}
           # slack-message: "release: 🚀 PDM-IAM-SERVICE ${{  }}"
           # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`

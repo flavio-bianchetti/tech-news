@@ -5,13 +5,6 @@ on:
     branches: 
       - main
 
-env:
-  ENVIRONMENT: TECH-NEWS
-  AWS_REGION_NAME: us-east-1
-  AWS_ENDPOINT_URL: http://127.0.0.1:4566
-  AWS_PROFILE: local
-  AWS_ACCESS_KEY_ID: test
-  AWS_SECRET_ACCESS_KEY: test
   
 jobs:
   CI:
@@ -19,6 +12,13 @@ jobs:
 
     steps:
       - uses: act10ns/slack@v2
+        env:
+          ENVIRONMENT: TECH-NEWS
+          AWS_REGION_NAME: us-east-1
+          AWS_ENDPOINT_URL: http://127.0.0.1:4566
+          AWS_PROFILE: local
+          AWS_ACCESS_KEY_ID: test
+          AWS_SECRET_ACCESS_KEY: test
         with:
           status: starting
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
@@ -73,14 +73,13 @@ jobs:
           port: 4566
           # cors:
 
-      - name: test - configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-region: ${{ env.AWS_REGION_NAME }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      # - name: test - configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     aws-region: ${{ env.AWS_REGION_NAME }}
+      #     aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
 
-      # resolver o nome do arquivo de template
       - name: instance resources configuration
         run: |
           source $VENV

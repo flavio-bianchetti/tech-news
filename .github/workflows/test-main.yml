@@ -88,7 +88,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: test
         run: |
           source $VENV
-          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file local-resources.yaml --stack-name ${{ env.ENVIRONMENT }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
+          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ github.workspace }}/local-resources.yaml --stack-name ${{ env.ENVIRONMENT }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
 
       - name: stop containers
         id: stop-containers

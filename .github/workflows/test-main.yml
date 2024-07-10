@@ -75,6 +75,7 @@ jobs:
           # config: .github/slack.yml
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
+          config: .github/workflows/slack.yml
         if: always()
           # ultimo que funcionou
           # slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}

@@ -14,7 +14,7 @@ jobs:
         with:
           status: starting
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
-          message: $GITHUB_WORKSPACE - iniciando construção e envio...
+          message: ${{ GITHUB_WORKSPACE }} - iniciando construção e envio...
         if: always()
         
       - name: Checkout

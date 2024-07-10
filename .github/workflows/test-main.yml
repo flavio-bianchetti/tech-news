@@ -31,10 +31,11 @@ jobs:
       # TODO: Notify on Slack when new version is released :rocket:
       - name: Send GitHub Action Messages to Slack Workflow
         id: slack
+        uses: act10ns/slack@v2.1.0
         # uses: slackapi/slack-github-action@v1.26.0
         # uses: rtCamp/action-slack-notify@v2
-        # uses: act10ns/slack@v2.1.0
-        uses: alonsohki/slack-webhook-payload@v1
+        # último que funcionou
+        # uses: alonsohki/slack-webhook-payload@v1
         env:
         #   SLACK_WEBHOOK: ${{ secrets.SLACK_ROBOTICS_CI_WEBHOOK }}
         # run: |
@@ -52,35 +53,45 @@ jobs:
           # CHANNEL_ID: C07BNTR8E4S
           # CHANNEL_ID: teste-de-cicd
           # USERNAME: GitHub-CI
+          # pretext: Acionado via {{eventName}} por {{actor}} {{ou ação "action"}} {{ref}} `{{diffRef}}`
+          # title: GitHub Actions
+          # title_link: https://support.github.com
         with:
-          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}
-          content: |
-            {
-              "blocks": [
-                {
-                  "type": "divider"
-                },
-                {
-                  "type": "image",
-                  "image_url": "${{ env.ICON_URL }}",
-                  "alt_text": "Icon"
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name || 'Não disponível' }}"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                }
-              ]
-            }
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          # config: .github/slack.yml
+          status: ${{ job.status }}
+          # ultimo que funcionou
+          # slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          # ultimo que funcionou
+          # content: |
+          #   {
+          #     "blocks": [
+          #       {
+          #         "type": "divider"
+          #       },
+          #       {
+          #         "type": "image",
+          #         "image_url": "${{ env.ICON_URL }}",
+          #         "image_width": 100,
+          #         "image_height": 100,
+          #         "alt_text": "logo Python"
+          #       },
+          #       {
+          #         "type": "section",
+          #         "text": {
+          #           "type": "mrkdwn",
+          #           "text": ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name || 'Não disponível' }}"
+          #         }
+          #       },
+          #       {
+          #         "type": "section",
+          #         "text": {
+          #           "type": "mrkdwn",
+          #           "text": "Resultado da construção: ${{ job.status }}* \n Alterações: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          #         }
+          #       }
+          #     ]
+          #   }
 
           # content: ":rocket: TECH-NEWS - ${{ github.event.release.tag_name || github.event.release.name }} - Resultado da construção: ${{ job.status }}\nLink-PR: ${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
           # content: |

@@ -5,6 +5,14 @@ on:
     branches: 
       - main
 
+env:
+  ENVIRONMENT: TECH-NEWS
+  AWS_REGION_NAME: us-east-1
+  AWS_ENDPOINT_URL: http://127.0.0.1:4566
+  AWS_PROFILE: local
+  AWS_ACCESS_KEY_ID: test
+  AWS_SECRET_ACCESS_KEY: test
+  
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -33,7 +41,7 @@ jobs:
 
       - name: Construção de imagem Docker
         id: docker-images
-        uses: docker/build-push-action@v6.3.0
+        uses: docker/build-push-action@v6
         with:
           context: ./
           file: ./Dockerfile
@@ -64,6 +72,19 @@ jobs:
           # optimizeDbBeforeStartup:
           port: 4566
           # cors:
+
+      - name: test - configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-region: ${{ env.AWS_REGION_NAME }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+
+      # resolver o nome do arquivo de template
+      - name: instance resources configuration
+        run: |
+          source $VENV
+          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file local-resources.yaml --stack-name ${{ env.ENVIRONMENT }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
 
       - name: stop containers
         id: stop-containers

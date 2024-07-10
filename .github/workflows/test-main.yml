@@ -15,7 +15,7 @@ jobs:
           status: starting
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
           message: |
-            "${{ github.event.repository.name }}* - iniciando testes, construção e envio..."
+            **${{ github.event.repository.name }}** - iniciando testes, construção e envio...
         if: always()
         
       - name: Checkout

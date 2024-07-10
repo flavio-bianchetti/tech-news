@@ -62,7 +62,7 @@ jobs:
                 },
                 {
                   "type": "image",
-                  "image_url": "${{ ICON_URL }}",
+                  "image_url": "${{ env.ICON_URL }}",
                   "alt_text": "Icon"
                 },
                 {

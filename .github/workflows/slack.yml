@@ -1,11 +1,11 @@
 username: GitHub-CI
 icon_url: https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png
 
-pretext: Acionado via {{eventName}} por {{actor}} {{or action "action"}} {{ref}} `{{diffRef}}`
+pretext: Acionado via {{eventName}} por {{actor}} {{or action "ação"}} {{ref}} `{{diffRef}}`
 title_link: https://support.github.com
 
 text: |
-  *<{{workflowRunUrl}}|Fluxo de trabalho _{{workflow}}_ trabalho _{{jobName}}_ acionado por _{{eventName}}_ está _{{jobStatus}}_>* por <{{refUrl}}|`{{ref}}`>
+  *<{{workflowRunUrl}}|Fluxo de trabalho _{{workflow}}_ tarefa _{{jobName}}_ acionado via _{{eventName}}_ com status de _{{jobStatus}}_>* por <{{refUrl}}|`{{ref}}`>
   {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{description}}{{/if}}
   {{#if payload.commits}}
   *Commits*

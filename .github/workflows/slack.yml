@@ -1,12 +1,11 @@
 username: GitHub-CI
 icon_url: https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png
 
-pretext: Triggered via {{eventName}} by {{actor}} {{or action "action"}} {{ref}} `{{diffRef}}`
-title: GitHub Actions
+pretext: Acionado via {{eventName}} por {{actor}} {{or action "action"}} {{ref}} `{{diffRef}}`
 title_link: https://support.github.com
 
 text: |
-  *<{{workflowRunUrl}}|Workflow _{{workflow}}_ job _{{jobName}}_ triggered by _{{eventName}}_ is _{{jobStatus}}_>* for <{{refUrl}}|`{{ref}}`>
+  *<{{workflowRunUrl}}|Fluxo de trabalho _{{workflow}}_ trabalho _{{jobName}}_ acionado por _{{eventName}}_ está _{{jobStatus}}_>* por <{{refUrl}}|`{{ref}}`>
   {{#if description}}<{{diffUrl}}|`{{diffRef}}`> - {{description}}{{/if}}
   {{#if payload.commits}}
   *Commits*
@@ -16,32 +15,32 @@ text: |
   {{/if}}
 
 fallback: |-
-  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} is {{jobStatus}}
+  [GitHub] {{workflow}} #{{runNumber}} {{jobName}} está {{jobStatus}}
 
 fields:
-  - title: Job Steps
+  - title: Etapas do trabalho
     value: "{{#each jobSteps}}{{icon this.outcome}} {{@key}}\n{{/each}}"
     short: false
-  - title: Job Matrix
+  - title: Matriz de trabalho
     value: "{{#each jobMatrix}}{{@key}}: {{this}}\n{{/each}}"
     short: false
-  - title: Workflow
+  - title: Fluxo de trabalho
     value: "<{{workflowUrl}}|{{workflow}}>"
     short: true
-  - title: Git Ref
+  - title: Referência do Git
     value: "{{ref}} ({{refType}})"
     short: true
-  - title: Run ID
+  - title: ID de execução
     value: |-
       <{{workflowRunUrl}}|{{runId}}>
     short: true
-  - title: Run Number
+  - title: Número de execução
     value: "{{runNumber}}"
     short: true
-  - title: Actor
+  - title: Ator
     value: "{{actor}}"
     short: true
-  - title: Job Status
+  - title: Status do trabalho
     value: "{{jobStatus}}"
     short: true
 

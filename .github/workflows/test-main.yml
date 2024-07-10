@@ -66,17 +66,17 @@ jobs:
           port: 4566
           # cors:
 
-      - name: test - configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        env:
-          AWS_REGION_NAME: us-east-1
-          AWS_ACCESS_KEY_ID: test
-          AWS_SECRET_ACCESS_KEY: test
-        with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-region: ${{ env.AWS_REGION_NAME }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          audience: http://127.0.0.1:4566
+      # - name: test - configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   env:
+      #     AWS_REGION_NAME: us-east-1
+      #     AWS_ACCESS_KEY_ID: test
+      #     AWS_SECRET_ACCESS_KEY: test
+      #   with:
+      #     aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     aws-region: ${{ env.AWS_REGION_NAME }}
+      #     aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     audience: http://127.0.0.1:4566
 
       - name: instance resources configuration
         env:

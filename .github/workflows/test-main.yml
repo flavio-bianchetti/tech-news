@@ -10,8 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.1.7
-      
+      - uses: act10ns/slack@v2
+        with:
+          status: starting
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          message: Starting Docker Build and Push...
+        if: always()
+        
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+        
+      - name: Variables
+        id: vars
+        run: echo "::set-output name=SHORT_COMMIT_ID::$(git rev-parse --short HEAD)"
+          
       - name: Autenticação no Docker Hub
         uses: docker/login-action@v3.2.0
         with:
@@ -60,6 +72,7 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
           # config: .github/slack.yml
           status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
           # ultimo que funcionou
           # slack-webhook-url: ${{ secrets.SLACK_WEBHOOK }}
           # ultimo que funcionou

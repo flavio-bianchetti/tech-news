@@ -81,6 +81,7 @@ jobs:
           aws-access-key-id: us-east-1
           aws-region: test
           aws-secret-access-key: test
+          audience: sts.amazonaws.com
 
       - name: instance resources configuration
         env:

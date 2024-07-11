@@ -43,6 +43,10 @@ jobs:
       #       flaviobianchetti2/tech-news:v1
       #       flaviobianchetti2/tech-news:latest
 
+      - name: Construção de imagem Docker
+        id: docker-images
+        run: docker run -p docker-compose.yml
+
       # - name: Local DynamoDB Docker
       #   id: dynamodb
       #   uses: rrainn/dynamodb-action@v4.0.0

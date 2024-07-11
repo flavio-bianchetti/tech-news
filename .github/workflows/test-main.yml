@@ -64,7 +64,7 @@ jobs:
           # delayTransientStatuses:
           # optimizeDbBeforeStartup:
           port: 4566
-          # cors:
+          cors: "*"
 
       # - name: test - configure aws credentials
       #   uses: aws-actions/configure-aws-credentials@v4

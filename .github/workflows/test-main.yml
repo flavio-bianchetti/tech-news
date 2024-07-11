@@ -60,7 +60,7 @@ jobs:
         #   AWS_SECRET_ACCESS_KEY: test
         with:
           # dbPath: http://localhost
-          # sharedDb: http://localhost
+          sharedDb: http://localhost
           # delayTransientStatuses:
           # optimizeDbBeforeStartup:
           port: 8000

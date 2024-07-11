@@ -59,7 +59,7 @@ jobs:
         #   AWS_ACCESS_KEY_ID: test
         #   AWS_SECRET_ACCESS_KEY: test
         with:
-          # dbPath: http://localhost
+          dbPath: http://localhost
           sharedDb: http://localhost
           # delayTransientStatuses:
           # optimizeDbBeforeStartup:

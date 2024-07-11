@@ -45,7 +45,7 @@ jobs:
 
       - name: Construção de imagem Docker
         id: docker-images
-        run: docker run -p docker-compose.yml
+        run: docker compose up -d
 
       # - name: Local DynamoDB Docker
       #   id: dynamodb

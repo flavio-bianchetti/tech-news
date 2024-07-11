@@ -9,6 +9,17 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: TECH-NEWS
+      STACK_NAME: LocalStack
+      AWS_REGION_NAME: us-east-1
+      AWS_ENDPOINT_URL: http://localhost:4566
+      AWS_PROFILE: local
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      # TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
+      TEMPLATE_FILE: local-resources.yaml
+      OUTPUT_FORMAT: json
 
     steps:
       - uses: act10ns/slack@v2
@@ -95,17 +106,6 @@ jobs:
       #     # audience: sts.amazonaws.com
 
       - name: instance resources configuration
-        env:
-          ENVIRONMENT: TECH-NEWS
-          STACK_NAME: LocalStack
-          AWS_REGION_NAME: us-east-1
-          AWS_ENDPOINT_URL: http://localhost:4566
-          AWS_PROFILE: local
-          AWS_ACCESS_KEY_ID: test
-          AWS_SECRET_ACCESS_KEY: test
-          # TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
-          TEMPLATE_FILE: local-resources.yaml
-          OUTPUT_FORMAT: json
         # run: |
         #   if [ -f "$VENV" ]; then
         #     source $VENV

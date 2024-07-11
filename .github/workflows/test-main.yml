@@ -88,14 +88,14 @@ jobs:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
           TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
-        run: |
-          if [ -f "$VENV" ]; then
-            source $VENV
-          else
-            echo "VENV file not found: $VENV"
-            exit 1
-          fi
-          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
+        # run: |
+        #   if [ -f "$VENV" ]; then
+        #     source $VENV
+        #   else
+        #     echo "VENV file not found: $VENV"
+        #     exit 1
+        #   fi
+        run: AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         # run: |
         #   source $VENV
         # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}

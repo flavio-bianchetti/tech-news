@@ -73,7 +73,7 @@ jobs:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
         with:
-          # role-skip-session-tagging: true
+          role-skip-session-tagging: true
           # aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           # aws-region: ${{ env.AWS_REGION_NAME }}
           # aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}

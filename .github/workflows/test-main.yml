@@ -25,23 +25,23 @@ jobs:
         id: vars
         run: echo "::set-output name=SHORT_COMMIT_ID::$(git rev-parse --short HEAD)"
           
-      - name: Autenticação no Docker Hub
-        id: docker-authentication
-        uses: docker/login-action@v3.2.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_PWD }}
+      # - name: Autenticação no Docker Hub
+      #   id: docker-authentication
+      #   uses: docker/login-action@v3.2.0
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USER }}
+      #     password: ${{ secrets.DOCKERHUB_PWD }}
 
-      - name: Construção de imagem Docker
-        id: docker-images
-        uses: docker/build-push-action@v6
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: |
-            flaviobianchetti2/tech-news:v1
-            flaviobianchetti2/tech-news:latest
+      # - name: Construção de imagem Docker
+      #   id: docker-images
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     context: ./
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: |
+      #       flaviobianchetti2/tech-news:v1
+      #       flaviobianchetti2/tech-news:latest
 
       - name: Local DynamoDB Docker
         id: dynamodb
@@ -73,15 +73,16 @@ jobs:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
         with:
-          role-skip-session-tagging: true
+          # role-skip-session-tagging: true
           # aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           # aws-region: ${{ env.AWS_REGION_NAME }}
           # aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           # audience: http://127.0.0.1:4566
+          role-to-assume: arn:aws:iam::xxxxxxxxxxxx:role/github-actions
           aws-access-key-id: us-east-1
           aws-region: test
           aws-secret-access-key: test
-          audience: sts.amazonaws.com
+          # audience: sts.amazonaws.com
 
       - name: instance resources configuration
         env:

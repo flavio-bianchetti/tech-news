@@ -70,7 +70,7 @@ jobs:
       - name: Setup local DynamoDB
         id: dynamodb
         # docker run --name dynamodb -d -p 4566:4566 amazon/dynamodb-local -jar DynamoDBLocal.jar -port 4566 -inMemory -cors *
-        run: docker run -p 4566:4566 amazon/dynamodb-local -port 4566 -inMemory -cors *
+        run: sudo docker run -p 4566:4566 amazon/dynamodb-local -jar DynamoDBLocal.jar -port 4566 -inMemory -cors *
 
       # - name: test - configure aws credentials
       #   uses: aws-actions/configure-aws-credentials@v4

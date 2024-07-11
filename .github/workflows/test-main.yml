@@ -93,7 +93,8 @@ jobs:
           AWS_PROFILE: local
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
-          TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
+          # TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
+          TEMPLATE_FILE: local-resources.yaml
         # run: |
         #   if [ -f "$VENV" ]; then
         #     source $VENV

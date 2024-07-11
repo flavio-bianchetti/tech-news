@@ -107,7 +107,7 @@ jobs:
           aws configure set region ${{ env.AWS_PROFILE }} --profile ${{ env.AWS_PROFILE }}
           aws configure set aws_access_key_id ${{ env.AWS_ACCESS_KEY_ID }} --profile ${{ env.AWS_PROFILE }}
           aws configure set aws_secret_access_key ${{ env.AWS_SECRET_ACCESS_KEY }} --profile ${{ env.AWS_PROFILE }}
-          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --stack-name ${{ env.STACK_NAME }}
+          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }}
         # run: |
         #   source $VENV

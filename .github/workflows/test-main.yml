@@ -90,7 +90,7 @@ jobs:
           ENVIRONMENT: TECH-NEWS
           STACK_NAME: LocalStack
           AWS_REGION_NAME: us-east-1
-          AWS_ENDPOINT_URL: http://amazon/dynamodb-local:8000
+          AWS_ENDPOINT_URL: http://localhost:8000
           AWS_PROFILE: local
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test

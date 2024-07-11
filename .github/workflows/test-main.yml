@@ -115,7 +115,7 @@ jobs:
           aws configure set aws_secret_access_key ${{ env.AWS_SECRET_ACCESS_KEY }} --profile ${{ env.AWS_PROFILE }}
           aws configure set output ${{ env.OUTPUT_FORMAT }} --profile ${{ env.AWS_PROFILE }}
           aws configure set endpoint_url ${{ env.AWS_ENDPOINT_URL }} --profile ${{ env.AWS_PROFILE }}
-          aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }}
+          aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --output json --stack-name ${{ env.STACK_NAME }}
           aws dynamodb list-tables --profile local --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }}
         # aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}

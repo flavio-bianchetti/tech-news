@@ -88,6 +88,8 @@ jobs:
       - name: instance resources configuration
         env:
           ENVIRONMENT: TECH-NEWS
+          APP_KEY: RANDOM-APP-KEY
+          AES_KEY: z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaP
           STACK_NAME: LocalStack
           AWS_REGION_NAME: us-east-1
           AWS_ENDPOINT_URL: http://localhost:8000

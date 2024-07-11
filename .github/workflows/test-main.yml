@@ -63,8 +63,8 @@ jobs:
           # sharedDb: http://localhost
           # delayTransientStatuses:
           # optimizeDbBeforeStartup:
-          port: 8000
-          # port: 4566
+          # port: 8000
+          port: 4566
           cors: "*"
 
       # - name: test - configure aws credentials
@@ -92,7 +92,7 @@ jobs:
           AES_KEY: z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaP
           STACK_NAME: LocalStack
           AWS_REGION_NAME: us-east-1
-          AWS_ENDPOINT_URL: http://localhost:8000
+          AWS_ENDPOINT_URL: http://localhost:4566
           AWS_PROFILE: local
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test

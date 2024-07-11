@@ -81,15 +81,21 @@ jobs:
       - name: instance resources configuration
         env:
           ENVIRONMENT: TECH-NEWS
+          STACK_NAME: LocalStack
           AWS_REGION_NAME: us-east-1
           AWS_ENDPOINT_URL: http://localhost:8000
           AWS_PROFILE: local
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
           TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
+        # run: |
+        #   source $VENV
+        # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         run: |
           source $VENV
-          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.ENVIRONMENT }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
+          alias awslocal="AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }}"
+          awslocal cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }}
+          
 
       - name: stop containers
         id: stop-containers

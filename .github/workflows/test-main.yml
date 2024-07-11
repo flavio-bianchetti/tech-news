@@ -43,29 +43,34 @@ jobs:
       #       flaviobianchetti2/tech-news:v1
       #       flaviobianchetti2/tech-news:latest
 
-      - name: Local DynamoDB Docker
-        id: dynamodb
-        uses: rrainn/dynamodb-action@v4.0.0
-        # env:
-        #   ENVIRONMENT: PDM-SIA
-        #   # Preciso colocar as chaves abaixo em secret?
-        #   APP_KEY: RANDOM-APP-KEY
-        #   AES_KEY: z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaP
+      # - name: Local DynamoDB Docker
+      #   id: dynamodb
+      #   uses: rrainn/dynamodb-action@v4.0.0
+      #   # env:
+      #   #   ENVIRONMENT: PDM-SIA
+      #   #   # Preciso colocar as chaves abaixo em secret?
+      #   #   APP_KEY: RANDOM-APP-KEY
+      #   #   AES_KEY: z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaP
 
-        #   AWS_REGION_NAME: us-east-1
-        #   AWS_ENDPOINT_URL: http://127.0.0.1:4566
-        #   AWS_PROFILE: local
-        #   # Tem que colocar as senhas abaixo em secret?
-        #   AWS_ACCESS_KEY_ID: test
-        #   AWS_SECRET_ACCESS_KEY: test
-        with:
-          # dbPath: http://localhost
-          # sharedDb: http://localhost
-          # delayTransientStatuses:
-          # optimizeDbBeforeStartup:
-          # port: 8000
-          port: 4566
-          cors: "*"
+      #   #   AWS_REGION_NAME: us-east-1
+      #   #   AWS_ENDPOINT_URL: http://127.0.0.1:4566
+      #   #   AWS_PROFILE: local
+      #   #   # Tem que colocar as senhas abaixo em secret?
+      #   #   AWS_ACCESS_KEY_ID: test
+      #   #   AWS_SECRET_ACCESS_KEY: test
+      #   with:
+      #     # dbPath: http://localhost
+      #     # sharedDb: http://localhost
+      #     # delayTransientStatuses:
+      #     # optimizeDbBeforeStartup:
+      #     # port: 8000
+      #     port: 4566
+      #     cors: "*"
+
+      - name: Setup local DynamoDB
+        id: dynamodb
+        # docker run --name dynamodb -d -p 4566:4566 amazon/dynamodb-local -jar DynamoDBLocal.jar -port 4566 -inMemory -cors *
+        run: docker run -p 4566:4566 amazon/dynamodb-local
 
       # - name: test - configure aws credentials
       #   uses: aws-actions/configure-aws-credentials@v4
@@ -88,8 +93,6 @@ jobs:
       - name: instance resources configuration
         env:
           ENVIRONMENT: TECH-NEWS
-          APP_KEY: RANDOM-APP-KEY
-          AES_KEY: z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaP
           STACK_NAME: LocalStack
           AWS_REGION_NAME: us-east-1
           AWS_ENDPOINT_URL: http://localhost:4566

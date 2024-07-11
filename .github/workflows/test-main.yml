@@ -88,7 +88,8 @@ jobs:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
           TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
-          run: AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
+          run: |
+            AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         # run: |
         #   source $VENV
         # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}

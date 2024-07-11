@@ -66,23 +66,23 @@ jobs:
           port: 8000
           cors: "*"
 
-      - name: test - configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        env:
-          AWS_REGION_NAME: us-east-1
-          AWS_ACCESS_KEY_ID: test
-          AWS_SECRET_ACCESS_KEY: test
-        with:
-          # role-skip-session-tagging: true
-          # aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          # aws-region: ${{ env.AWS_REGION_NAME }}
-          # aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          # audience: http://127.0.0.1:4566
-          role-to-assume: arn:aws:iam::xxxxxxxxxxxx:role/github-actions
-          aws-access-key-id: us-east-1
-          aws-region: test
-          aws-secret-access-key: test
-          # audience: sts.amazonaws.com
+      # - name: test - configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   # env:
+      #   #   AWS_REGION_NAME: us-east-1
+      #   #   AWS_ACCESS_KEY_ID: test
+      #   #   AWS_SECRET_ACCESS_KEY: test
+      #   with:
+      #     # role-skip-session-tagging: true
+      #     # aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+      #     # aws-region: ${{ env.AWS_REGION_NAME }}
+      #     # aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+      #     # audience: http://127.0.0.1:4566
+      #     role-to-assume: arn:aws:iam::xxxxxxxxxxxx:role/github-actions
+      #     aws-access-key-id: us-east-1
+      #     aws-region: test
+      #     aws-secret-access-key: test
+      #     # audience: sts.amazonaws.com
 
       - name: instance resources configuration
         env:
@@ -101,7 +101,11 @@ jobs:
         #     echo "VENV file not found: $VENV"
         #     exit 1
         #   fi
-        run: AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
+        run: |
+          aws configure set region ${{ env.AWS_PROFILE }} --profile ${{ env.AWS_PROFILE }}
+          aws configure set aws_access_key_id ${{ env.AWS_ACCESS_KEY_ID }} --profile ${{ env.AWS_PROFILE }}
+          aws configure set aws_secret_access_key ${{ env.AWS_SECRET_ACCESS_KEY }} --profile ${{ env.AWS_PROFILE }}
+          AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
         # run: |
         #   source $VENV
         # AWS_PROFILE=${{ env.AWS_PROFILE }} aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }} --endpoint-url ${{ env.AWS_ENDPOINT_URL }}

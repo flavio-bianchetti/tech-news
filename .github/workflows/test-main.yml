@@ -101,6 +101,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: test
           # TEMPLATE_FILE: https://github.com/flavio-bianchetti/tech-news/blob/main/local-resources.yaml
           TEMPLATE_FILE: local-resources.yaml
+          OUTPUT_FORMAT: json
         # run: |
         #   if [ -f "$VENV" ]; then
         #     source $VENV
@@ -109,9 +110,10 @@ jobs:
         #     exit 1
         #   fi
         run: |
-          aws configure set region ${{ env.AWS_PROFILE }} --profile ${{ env.AWS_PROFILE }}
+          aws configure set region ${{ env.AWS_REGION_NAME }} --profile ${{ env.AWS_PROFILE }}
           aws configure set aws_access_key_id ${{ env.AWS_ACCESS_KEY_ID }} --profile ${{ env.AWS_PROFILE }}
           aws configure set aws_secret_access_key ${{ env.AWS_SECRET_ACCESS_KEY }} --profile ${{ env.AWS_PROFILE }}
+          aws configure set output ${{ env.OUTPUT_FORMAT }} --profile ${{ env.AWS_PROFILE }}
           aws configure set endpoint_url ${{ env.AWS_ENDPOINT_URL }} --profile ${{ env.AWS_PROFILE }}
           aws --endpoint-url ${{ env.AWS_ENDPOINT_URL }} cloudformation deploy --template-file ${{ env.TEMPLATE_FILE }} --stack-name ${{ env.STACK_NAME }}
           aws dynamodb list-tables --profile local --endpoint-url ${{ env.AWS_ENDPOINT_URL }}
